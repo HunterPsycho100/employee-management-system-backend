@@ -29,6 +29,7 @@ import net.javaguides.springboot.model.Address;
 import net.javaguides.springboot.model.Employee;
 import net.javaguides.springboot.respository.AddressRepository;
 import net.javaguides.springboot.respository.EmployeeRepository;
+import net.javaguides.springboot.respository.ProjectRepository;
 import net.javaguides.springboot.service.AddressService;
 import net.javaguides.springboot.service.EmployeeService;
 
@@ -48,15 +49,20 @@ public class EmployeeController {
 	private AddressRepository addressRepository;
 	
 	@Autowired
+	private ProjectRepository projectRepository;
+	
+	@Autowired
 	private EmployeeService employeeService;
 	
 	@Autowired
 	private AddressService addressService;
 	
+	
 	@GetMapping("employees")
 	public List<EmployeeDto> getAllEmployees() {
 		return employeeService.getEmployees();
 	}
+	
 	
 	//post to create just employee info (no addresses) using DTO
 	@PostMapping("/employees")

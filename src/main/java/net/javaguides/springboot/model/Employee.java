@@ -11,6 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -38,7 +41,14 @@ public class Employee {
 	
 	@OneToMany (mappedBy = "employees", cascade = CascadeType.ALL, fetch = FetchType.LAZY)	
 	private List<Address> addresses;
-	//	private Set<Address> addresses = new HashSet<>();
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+	@JoinTable(name = "employeesprojects",
+    	joinColumns = {
+            @JoinColumn(name = "employee_id")},
+    	inverseJoinColumns = {
+            @JoinColumn(name = "project_id")})
+	private List<Project> projects;
 	
 	public Employee() {
 	}
@@ -80,8 +90,10 @@ public class Employee {
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
 	}
-
-	
-	
-	
+	public List<Project> getProjects() {
+		return projects;
+	}
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
 }

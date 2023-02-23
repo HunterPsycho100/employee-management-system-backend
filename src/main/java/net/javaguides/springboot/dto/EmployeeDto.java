@@ -2,8 +2,7 @@ package net.javaguides.springboot.dto;
 
 import java.util.List;
 
-import net.javaguides.springboot.model.Address;
-import net.javaguides.springboot.model.Employee;
+import net.javaguides.springboot.model.Project;
 
 public class EmployeeDto {
 	private long id;
@@ -11,6 +10,7 @@ public class EmployeeDto {
 	private String lastName;
 	private String emailId;
 	private List<AddressDto> addresses;
+	private List<ProjectDto> projects;
 	
 	public EmployeeDto() {		
 	}
@@ -44,5 +44,11 @@ public class EmployeeDto {
 	}
 	public void setAddresses(List<AddressDto> addresses) {
 		this.addresses = addresses;
+	}
+	public List<ProjectDto> getProjects() {
+		return projects;
+	}
+	public void setProjects(List<ProjectDto> projects) {
+		this.projects = projects;
 	}
 }
